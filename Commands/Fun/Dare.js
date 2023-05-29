@@ -9,29 +9,9 @@ module.exports = {
   category: "Fun",
   start: async (Miku, m, { text, prefix }) => {
     const shibam = await axios.get(
-      "https://dull-plum-panda-gear.cyclic.app/dare"
+      "https://smiling-hosiery-bear.cyclic.app/weeb/dare"
     );
-    let buttons = [
-      {
-        buttonId: `${prefix}t`,
-        buttonText: { displayText: "Truth" },
-        type: 1,
-      },
-      {
-        buttonId: `${prefix}d`,
-        buttonText: { displayText: "Dare >>" },
-        type: 1,
-      },
-    ];
-
-    let buttonMessage = {
-      image: { url: botImage4 },
-      caption: `*${shibam.data}*`,
-      footer: `*${botName}*`,
-      buttons: buttons,
-      headerType: 4,
-    };
-
-    await Miku.sendMessage(m.from, buttonMessage, { quoted: m });
+    
+    await Miku.sendMessage(m.from, {image: { url: botImage4 },caption: `*${shibam.data}*`,}, { quoted: m });
   },
 };

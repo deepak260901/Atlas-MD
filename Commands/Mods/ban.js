@@ -38,14 +38,12 @@ module.exports = {
         { text: `Please tag a user to *Ban*!` },
         { quoted: m }
       );
-    }
-
-    if (m.quoted) {
+    }else if (m.quoted) {
       var mentionedUser = m.quoted.sender;
     } else {
       var mentionedUser = mentionByTag[0];
     }
-    //var mentionedUser = mentionByTag;
+    
     let GroupName = metadata.subject;
     let banreason = args.join(" ");
 
@@ -72,20 +70,6 @@ module.exports = {
         .findOne({ id: userId })
         .then(async (user) => {
           if (!user) {
-            if (
-              modStatus == "true" ||
-              ownerlist.includes(`${mentionedUser.split("@")[0]}`)
-            )
-              return Miku.sendMessage(
-                m.from,
-                {
-                  text: `@${
-                    mentionedUser.split("@")[0]
-                  } is a *Mod* and can't be banned !`,
-                  mentions: [mentionedUser],
-                },
-                { quoted: m }
-              );
             await mku.create({
               id: userId,
               ban: true,
